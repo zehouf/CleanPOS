@@ -5,31 +5,31 @@ and SOLID principles with ASP.NET Core 10.
  
 ## Tech Stack
  
- Layer       Technology                        
------------------------------------------------
- Backend     ASP.NET Core 10, C#               
- ORM         Entity Framework Core 10          
- CQRS        MediatR                           
- Auth        ASP.NET Identity + JWT            
- Database    PostgreSQL                        
- Frontend    Vue.js 3 + Vite + Pinia           
- Tests       xUnit + Moq + FluentAssertions    
- CICD       GitHub Actions                    
+| Layer      | Technology                        |
+|------------|-----------------------------------|
+| Backend    | ASP.NET Core 10, C#               |
+| ORM        | Entity Framework Core 10          |
+| CQRS       | MediatR                           |
+| Auth       | ASP.NET Identity + JWT            |
+| Database   | PostgreSQL                        |
+| Frontend   | Vue.js 3 + Vite + Pinia           |
+| Tests      | xUnit + Moq + FluentAssertions    |
+| CI/CD      | GitHub Actions                    |
  
 ## Architecture
  
 ```
-Domain - Application - Infrastructure - WebAPI
+Domain <- Application <- Infrastructure <- WebAPI
 ```
  
 ## Getting Started
  
 ```bash
 # Clone the repository
-git clone httpsgithub.comVOTRE_USERNAMECleanPOS.git
+git clone https://github.com/VOTRE_USERNAME/CleanPOS.git
  
 # Navigate to backend
-cd CleanPOSbackend
+cd CleanPOS/backend
  
 # Restore dependencies
 dotnet restore
@@ -40,9 +40,9 @@ dotnet build
  
 ## Project Status
  
-- [ ] Domain Layer
+- [x] Domain Layer
 - [ ] Application Layer
 - [ ] Infrastructure Layer
 - [ ] WebAPI Layer
 - [ ] Frontend
-- [ ] CICD
+- [ ] CI/CD
