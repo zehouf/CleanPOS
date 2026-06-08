@@ -1,0 +1,6 @@
+@CleanPOS.WebAPI_HostAddress = http://localhost:5045
+
+GET {{CleanPOS.WebAPI_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
