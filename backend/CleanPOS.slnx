@@ -1,2 +1,12 @@
 <Solution>
+  <Folder Name="/src/">
+    <Project Path="src/CleanPOS.Application/CleanPOS.Application.csproj" />
+    <Project Path="src/CleanPOS.Domain/CleanPOS.Domain.csproj" />
+    <Project Path="src/CleanPOS.Infrastructure/CleanPOS.Infrastructure.csproj" />
+    <Project Path="src/CleanPOS.WebAPI/CleanPOS.WebAPI.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/CleanPOS.Application.Tests/CleanPOS.Application.Tests.csproj" />
+    <Project Path="tests/CleanPOS.Infrastructure.Tests/CleanPOS.Infrastructure.Tests.csproj" />
+  </Folder>
 </Solution>
