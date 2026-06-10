@@ -29,4 +29,20 @@ public class Category : BaseEntity
         Description = description?.Trim();
         SetUpdatedAt();
     }
+
+    public void Delete()
+    {
+        if (IsDeleted)
+            throw new InvalidOperationException("Category is already deleted.");
+        SoftDelete();
+    }
+
+    public void Restore()
+    {
+        if (!IsDeleted)
+            throw new InvalidOperationException("Category is not deleted.");
+        IsDeleted = false;
+        DeletedAt = null;
+        SetUpdatedAt();
+    }
 }
