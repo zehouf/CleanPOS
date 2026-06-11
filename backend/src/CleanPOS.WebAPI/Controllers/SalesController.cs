@@ -8,10 +8,12 @@ using CleanPOS.Application.Sales.Commands.CreateSale;
 using CleanPOS.Application.Sales.Queries.GetDailyRevenue;
 using CleanPOS.Application.Sales.Queries.GetSaleById;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 [ApiController]
 [Route("api/[controller]")]
+[Authorize]
 public class SalesController : ControllerBase
 {
     private readonly IMediator _mediator;
@@ -22,6 +24,7 @@ public class SalesController : ControllerBase
     }
 
     [HttpGet("{id:guid}")]
+    [Authorize(Roles = "Admin,Cashier")]
     public async Task<IActionResult> GetById(
         Guid id,
         CancellationToken cancellationToken)
@@ -32,6 +35,7 @@ public class SalesController : ControllerBase
     }
 
     [HttpGet("daily-revenue")]
+    [Authorize(Roles = "Admin")]
     public async Task<IActionResult> GetDailyRevenue(
         [FromQuery] DateTime date,
         CancellationToken cancellationToken)
@@ -42,6 +46,7 @@ public class SalesController : ControllerBase
     }
 
     [HttpPost]
+    [Authorize(Roles = "Admin,Cashier")]
     public async Task<IActionResult> Create(
         CreateSaleCommand command,
         CancellationToken cancellationToken)
@@ -51,6 +56,7 @@ public class SalesController : ControllerBase
     }
 
     [HttpPost("{id:guid}/lines")]
+    [Authorize(Roles = "Admin,Cashier")]
     public async Task<IActionResult> AddLine(
         Guid id,
         AddSaleLineCommand command,
@@ -64,6 +70,7 @@ public class SalesController : ControllerBase
     }
 
     [HttpPost("{id:guid}/complete")]
+    [Authorize(Roles = "Admin,Cashier")]
     public async Task<IActionResult> Complete(
         Guid id,
         CancellationToken cancellationToken)
@@ -74,6 +81,7 @@ public class SalesController : ControllerBase
     }
 
     [HttpPost("{id:guid}/cancel")]
+    [Authorize(Roles = "Admin,Cashier")]
     public async Task<IActionResult> Cancel(
         Guid id,
         CancellationToken cancellationToken)

@@ -7,10 +7,12 @@ using CleanPOS.Application.Categories.Commands.UpdateCategory;
 using CleanPOS.Application.Categories.Queries.GetAllCategories;
 using CleanPOS.Application.Categories.Queries.GetCategoryById;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 [ApiController]
 [Route("api/[controller]")]
+[Authorize]
 public class CategoriesController : ControllerBase
 {
     private readonly IMediator _mediator;
@@ -21,6 +23,7 @@ public class CategoriesController : ControllerBase
     }
 
     [HttpGet]
+    [Authorize(Roles = "Admin,Cashier")]
     public async Task<IActionResult> GetAll(
         CancellationToken cancellationToken)
     {
@@ -30,6 +33,7 @@ public class CategoriesController : ControllerBase
     }
 
     [HttpGet("{id:guid}")]
+    [Authorize(Roles = "Admin,Cashier")]
     public async Task<IActionResult> GetById(
         Guid id,
         CancellationToken cancellationToken)
@@ -40,6 +44,7 @@ public class CategoriesController : ControllerBase
     }
 
     [HttpPost]
+    [Authorize(Roles = "Admin")]
     public async Task<IActionResult> Create(
         CreateCategoryCommand command,
         CancellationToken cancellationToken)
@@ -49,6 +54,7 @@ public class CategoriesController : ControllerBase
     }
 
     [HttpPut("{id:guid}")]
+    [Authorize(Roles = "Admin")]
     public async Task<IActionResult> Update(
         Guid id,
         UpdateCategoryCommand command,
@@ -62,6 +68,7 @@ public class CategoriesController : ControllerBase
     }
 
     [HttpDelete("{id:guid}")]
+    [Authorize(Roles = "Admin")]
     public async Task<IActionResult> Delete(
         Guid id,
         CancellationToken cancellationToken)

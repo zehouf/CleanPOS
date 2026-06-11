@@ -7,10 +7,12 @@ using CleanPOS.Application.Products.Commands.UpdateProduct;
 using CleanPOS.Application.Products.Queries.GetAllProducts;
 using CleanPOS.Application.Products.Queries.GetProductById;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 [ApiController]
 [Route("api/[controller]")]
+[Authorize]
 public class ProductsController : ControllerBase
 {
     private readonly IMediator _mediator;
@@ -21,6 +23,7 @@ public class ProductsController : ControllerBase
     }
 
     [HttpGet]
+    [Authorize(Roles = "Admin,Cashier")]
     public async Task<IActionResult> GetAll(
         CancellationToken cancellationToken)
     {
@@ -30,6 +33,7 @@ public class ProductsController : ControllerBase
     }
 
     [HttpGet("{id:guid}")]
+    [Authorize(Roles = "Admin,Cashier")]
     public async Task<IActionResult> GetById(
         Guid id,
         CancellationToken cancellationToken)
@@ -40,6 +44,7 @@ public class ProductsController : ControllerBase
     }
 
     [HttpPost]
+    [Authorize(Roles = "Admin")]
     public async Task<IActionResult> Create(
         CreateProductCommand command,
         CancellationToken cancellationToken)
@@ -49,6 +54,7 @@ public class ProductsController : ControllerBase
     }
 
     [HttpPut("{id:guid}")]
+    [Authorize(Roles = "Admin")]
     public async Task<IActionResult> Update(
         Guid id,
         UpdateProductCommand command,
@@ -62,6 +68,7 @@ public class ProductsController : ControllerBase
     }
 
     [HttpDelete("{id:guid}")]
+    [Authorize(Roles = "Admin")]
     public async Task<IActionResult> Delete(
         Guid id,
         CancellationToken cancellationToken)

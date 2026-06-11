@@ -33,5 +33,7 @@ public class SaleConfiguration : IEntityTypeConfiguration<Sale>
         // Navigation property — collection privée
         builder.Navigation(s => s.Lines)
                .UsePropertyAccessMode(PropertyAccessMode.Field);
+
+        builder.HasQueryFilter(sl => !sl.IsDeleted);
     }
 }
