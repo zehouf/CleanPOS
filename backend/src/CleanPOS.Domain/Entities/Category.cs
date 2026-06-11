@@ -37,7 +37,7 @@ public class Category : BaseEntity
         SoftDelete();
     }
 
-    public void Restore()
+    public new void Restore()
     {
         if (!IsDeleted)
             throw new InvalidOperationException("Category is not deleted.");
