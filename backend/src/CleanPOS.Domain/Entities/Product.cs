@@ -47,4 +47,17 @@ public class Product : BaseEntity
         Stock -= quantity;
         SetUpdatedAt();
     }
+    public void Delete()
+    {
+        if (IsDeleted)
+            throw new InvalidOperationException("Product is already deleted.");
+        SoftDelete();
+    }
+
+    public new void Restore()
+    {
+        if (!IsDeleted)
+            throw new InvalidOperationException("Product is not deleted.");
+        base.Restore();
+    }
 }
